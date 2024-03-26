@@ -1,0 +1,107 @@
+<mat-card class="mat-card">
+    <mat-card-header>
+        <mat-card-title>
+            My Orders
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="mat-card" *ngFor="let item of orders,let i = index">
+   <mat-card-header>
+        <mat-card-title>
+            <h3> order ID {{ item.orderId }} </h3>
+            <h3>Order Placed at {{ item.createdAt | date: 'short' }}</h3>
+            <h3>Payment Method: {{ item.payMethod }}</h3>
+        </mat-card-title>
+   </mat-card-header> 
+   <mat-card-content>
+    <div class="">
+        <h3>Total {{ item.totalQuantity }} Item(s) In Order</h3>
+        <div class="">
+            <h4>Order Status: <span class="order-status" [ngClass]="{'placed': item.status === 'placed', 'dispatched': item.status === 'dispatched', 'delivered': item.status === 'delivered'}"> {{ item.status }} </span></h4>
+        </div>
+    </div>
+    <div class="products" *ngFor="let product of item.products">
+        <div class="row">
+            <div class="label">
+                <img height="150px" src="{{ product.product.productImage }}">
+            </div>
+            <div class="">
+                <h3>{{ product.product.name }}</h3><br>
+                <span class="details">
+                    {{ product.qty }} X {{ product.product.price }}
+                </span><br>
+                <span class="quantity">
+                    {{ product.qty * product.product.price | currency:'INR' }}
+                </span><br>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="label">
+
+            </div>
+            <div class="">
+                {{ product.qty }} X {{ product.product.price }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="label">
+
+            </div>
+            <div class="">
+                {{ product.qty * product.product.price | currency:'INR' }}
+            </div>
+        </div> -->
+
+        <!-- <div class="productImage">
+            <img height="100px" src="https://res.cloudinary.com/dmpsjggm3/image/upload/v1707051051/jlcud20mbnwydqburcfx.webp">
+        </div>
+        <div class="price-info">
+            <div class="order-detail">
+                Samsung S23 Ultra
+            </div>
+            <div>
+                1 X 5000
+            </div>
+            <div>
+                5000
+            </div>
+        </div> -->
+    </div>
+
+    <div>
+        <h2>Bill Details</h2>
+        <div class="bill-details">
+            <div class="row">
+                <div class="label">
+                    Sub Total 
+                </div>
+                <div class="">
+                    {{ item?.subTotal | currency:'INR' }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="label">
+                    Delivery Charge
+                </div>
+                <div class="">
+                    {{ 20 | currency:'INR' }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="label">
+                    <h2>Total</h2>
+                </div>
+                <div class="">
+                    <h2>{{ item.subTotal + 20 | currency:'INR' }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+   </mat-card-content>
+</mat-card>

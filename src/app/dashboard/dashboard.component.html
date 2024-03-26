@@ -1,0 +1,76 @@
+<nav class="navbar">
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>SmartCart</span>
+      <span class="example-spacer"></span>
+      <a mat-flat-button>Orders</a> &nbsp;&nbsp;&nbsp;
+      <a routerLink="/addProduct" mat-flat-button>Add Product</a> &nbsp;&nbsp;&nbsp;
+      <a mat-flat-button (click)="onAddDeliveryPartner()">Add DeliveryPartner</a>
+    </mat-toolbar>
+</nav>
+<table mat-table [dataSource]="orders" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="Manage">
+    <th style="width:90px" mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let element"> 
+      <div class="" [matMenuTriggerFor]="Menu">
+        <mat-icon>settings</mat-icon>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </div>
+
+      <mat-menu #Menu="matMenu">
+        <a mat-menu-item (click)="onAssignClick(element.orderId)">Assign Delivery Partner</a>
+      </mat-menu>  
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="orderId">
+    <th mat-header-cell *matHeaderCellDef> Order Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.orderId}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Customer">
+    <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.customer.username}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Product">
+    <th mat-header-cell *matHeaderCellDef> Products </th>
+    <td mat-cell *matCellDef="let element"> {{element.totalQuantity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="totalPrice">
+    <th mat-header-cell *matHeaderCellDef> Total Price </th>
+    <td mat-cell *matCellDef="let element"> {{element.totalPrice | currency:'INR'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="payMethod">
+    <th mat-header-cell *matHeaderCellDef> Pay Method </th>
+    <td mat-cell *matCellDef="let element"> {{element.payMethod}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="orderDate">
+    <th mat-header-cell *matHeaderCellDef> Order Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.createdAt | date:'short'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="shippingAddress">
+    <th style="width:400px" mat-header-cell *matHeaderCellDef> Shipping Address </th>
+    <td mat-cell *matCellDef="let element"> {{element.customer.address.street1}},{{element.customer.address.street2}},{{element.customer.address.street3}},{{element.customer.address.city}},{{element.customer.address.state}},{{element.customer.address.zip}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="deliveryPartner">
+    <th mat-header-cell *matHeaderCellDef> Delivery Partner </th>
+    <td mat-cell *matCellDef="let element"> {{ element?.deliveryPartner ? element.deliveryPartner.name : 'Not Assigned'  }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let element" [ngClass]="{'placed': element.status === 'placed', 'dispatched': element.status === 'dispatched', 'delivered': element.status === 'delivered'}"> {{ element.status }} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

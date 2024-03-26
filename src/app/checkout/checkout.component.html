@@ -1,0 +1,39 @@
+<div class="container" [formGroup]="form">
+    <div class="order-detail">
+        <h2>Shipping Address</h2>
+        <div class="address">
+            {{ this.userDetail.username }} <br>
+            {{ this.userAddress.street1 }} {{ this.userAddress.street2 }} {{ this.userAddress.street3 }} <br>
+            {{ this.userAddress.city }}, {{ this.userAddress.state }} {{this.userAddress.zip}} <br>
+        </div>
+        <h2>Payment Method</h2>
+        <div class="payment-method">
+            <label for="online"> Online </label>
+            <input name="payMethod" type="radio" [formControlName]="'payMethod'" [value]="'online'">
+            <label for="cash"> Cash on Delivery </label>
+            <input name="payMethod" type="radio" [formControlName]="'payMethod'" [value]="'cash'">
+        </div>
+        <h2>Product(s) Detail</h2>
+        <div class="productDetail" *ngFor="let productDetail of this.products">
+            <img class="productImage" width="250px" height="250px" src="{{ productDetail?.product.productImage }}">
+            <div class="productDescription">
+                <p class="product-name"> {{ productDetail?.product.name }} </p>
+                <!-- <p class="description"> {{ productDetail?.description }} </p> -->
+                <p class="category"> Category : {{ productDetail?.product.category }} </p>
+                <!-- <p class="qty"> Available Qty : {{ productDetail?.product.stockQuantity }} </p> -->
+                <p class="price"> {{ productDetail?.product.price | currency:'INR' }} </p>
+                <div>
+                    <label for="qty">Qty:</label>&nbsp;&nbsp;
+                    {{ productDetail?.qty }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="order-summary">
+        <button class="placeOrder" (click)="placeOrder()"> Place Your Order </button>
+        <h2> Order Summary </h2>
+        <p class=""> Sub Total : {{ this.subTotal | currency: 'INR' }}</p>
+        <p class=""> delivery : {{ this.deliveryCharge | currency: 'INR' }} </p>
+        <p class=""> Grand Total : {{ this.grandTotal | currency: 'INR' }} </p>
+    </div>
+</div>

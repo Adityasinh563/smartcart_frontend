@@ -1,0 +1,17 @@
+.example-spacer{
+    flex: 1 1 auto;
+}
+.placed {
+    background-color: #f0ad4e;
+    color: #fff;
+  }
+  
+.dispatched {
+    background-color: #5bc0de;
+    color: #fff;
+  }
+  
+.delivered {
+    background-color: #5cb85c;
+    color: #fff;
+  }

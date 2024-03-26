@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mat-card{
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mat-card-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mat-form-field {
+    width: 80%;
+}
+
+.btn-add{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-add button{
+    width: 80%;
+}
+

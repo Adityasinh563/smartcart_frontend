@@ -1,0 +1,62 @@
+<nav>
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>SmartCart</span>
+      <span class="example-spacer"></span>
+      <div class="" [matMenuTriggerFor]="userMenu">
+        <mat-icon (click)="onToggleDropdown()">account_circle</mat-icon>
+        <mat-icon (click)="onToggleDropdown()">keyboard_arrow_down</mat-icon>
+      </div>
+
+      <mat-menu #userMenu="matMenu">
+        <a mat-menu-item (click)="logout()">Logout</a>
+        <a mat-menu-item (click)="onAccountDetailClick()">Account Detail</a>
+        <a mat-menu-item routerLink="/myOrders">My Orders</a>
+      </mat-menu>
+
+       &nbsp;&nbsp;
+      <mat-icon [matBadge]="this.cartItemCount" matBadgeColor="warn" (click)="navigateToCheckout()">shopping_cart</mat-icon> 
+    </mat-toolbar>
+</nav>
+<div class="products">
+    <div class="example-card product" *ngFor="let item of this.products">
+        <div class="product-image">
+            <img class="product-img" src="{{item.productImage}}">
+        </div>
+        <div class="product-info">
+            <div class="product-name">
+                {{ item.name }}
+            </div>
+            <div class="product-price">
+                {{ item.price | currency:'INR' }}
+            </div>
+
+            <span *ngIf="item.stockQuantity != 0" class="availability-container">
+              <span class="material-icons" style="color: rgb(0, 128, 55);">check</span>
+              <span>Available</span>
+            </span>
+
+            <span *ngIf="item.stockQuantity == 0" class="availability-container">
+              <span class="material-icons" style="color:rgb(201, 13, 13)">close</span>
+              <span>Not Available</span>
+            </span>
+
+            <button [disabled]="item.stockQuantity === 0" *ngIf="!item.addedToCart" mat-raised-button color="primary" class="add-to-cart" label="Add To Cart" (click)="addToCart(item)"> <mat-icon>shopping_cart</mat-icon> Add To Cart
+            </button>
+            <div *ngIf="item.addedToCart" class="quantity-control">
+                <button mat-mini-fab color="primary" (click)="onPlusClick(item)">
+                  <mat-icon>add</mat-icon>
+                </button>
+                <input disabled type="text" [(ngModel)]="item.qty" class="quantity-input" />
+                <button mat-mini-fab color="primary" (click)="onMinusClick(item)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </div>
+            <button [disabled]="item.stockQuantity === 0" mat-raised-button color="primary" class="add-to-cart mrgT-10" label="Add To Cart">
+                Buy Now
+            </button>
+        </div>
+    </div>
+</div>

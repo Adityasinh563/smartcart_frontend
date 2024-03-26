@@ -1,0 +1,68 @@
+<div class="" *ngIf="this.notAuthorised">
+    Not Authorized for this page
+</div>
+
+<div class="container" [formGroup]="form" *ngIf="!this.notAuthorised">
+    <mat-card class="mat-card">
+        <mat-card-header class="mat-card-header">
+            <mat-card-title>Add Product</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Name" [formControlName]="'name'">
+                    <mat-error *ngIf="this.form.get('name')?.hasError('required')">Product Name is required</mat-error>
+                </mat-form-field>
+            </p>
+
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder="Description" [formControlName]="'description'"></textarea>
+                    <mat-error *ngIf="this.form.get('description')?.hasError('required')">Description is required</mat-error>
+                </mat-form-field>
+            </p>
+
+            <p class="form-field">
+                <mat-form-field  class="mat-form-field">
+                    <mat-label>Category</mat-label>
+                    <mat-select [formControlName]="'category'">
+                        <mat-option value="electronics">Electronics</mat-option>
+                        <mat-option value="fashion">Fashion</mat-option>
+                        <mat-option value="book">Book</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="this.form.get('category')?.hasError('required')">Category is required</mat-error>
+                  </mat-form-field>
+            </p>
+
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>Price</mat-label>
+                    <input type="number" matInput placeholder="Price" [formControlName]="'price'">
+                    <mat-error *ngIf="this.form.get('price')?.hasError('required')">Price is required</mat-error>
+                </mat-form-field>
+            </p>
+
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>Stock Quantity</mat-label>
+                    <input type="number" matInput placeholder="Stock Quantity" [formControlName]="'stockQuantity'">
+                    <mat-error *ngIf="this.form.get('stockQuantity')?.hasError('required')">Stock Quantity is required</mat-error>
+                </mat-form-field>
+            </p>
+
+            <p class="form-field">
+                <mat-label>Product Image</mat-label>
+                <!-- <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button> -->
+                <input #fileInput (change)="handleFileInput($event)" type="file">
+                <span class="file-name"></span>
+            </p>
+
+            <div class="btn-add mrgT-10">
+                <button mat-raised-button color="primary" (click)="addProduct()">Add</button>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+</div>

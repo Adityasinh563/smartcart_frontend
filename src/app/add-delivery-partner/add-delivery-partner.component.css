@@ -1,0 +1,20 @@
+.form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mat-form-field {
+    width: 80%;
+}
+
+.btn-add{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-add button{
+    width: 80%;
+}
+

@@ -1,0 +1,34 @@
+<div class="container" [formGroup]="form">
+    <mat-card class="mat-card">
+        <mat-card-header class="mat-card-header">
+            <mat-card-title>Register</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Username" [formControlName]="'username'">
+                    <mat-icon matSuffix>account_circle</mat-icon>
+                    <mat-error *ngIf="this.form.get('username')?.hasError('required')">Username is required</mat-error>
+                </mat-form-field>
+            </p>
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" [formControlName]="'password'">
+                    <mat-icon (click)="hide = !hide" matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngIf="this.form.get('password')?.hasError('required')">Password is required</mat-error>
+                </mat-form-field>
+            </p>
+
+            <div class="btn-login">
+                <button mat-raised-button color="primary" (click)="register()">Register</button>
+            </div>
+
+            <div class="btn-login mrgT-10">
+                <a routerLink="" mat-flat-button>Login</a>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,48 @@
+.product-detail{
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-description{
+    width: 300px;
+}
+
+.bill-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.order-detail{
+    margin-left: auto;
+}
+
+.label{
+    flex: 1;
+}
+
+.order-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-weight: bold;
+  }
+  
+  .order-status.placed {
+    background-color: #f0ad4e; /* Orange color for "Placed" status */
+    color: #fff; /* White text for better contrast */
+  }
+  
+  .order-status.dispatched {
+    background-color: #5bc0de; /* Blue color for "Dispatched" status */
+    color: #fff;
+  }
+  
+  .order-status.delivered {
+    background-color: #5cb85c; /* Green color for "Delivered" status */
+    color: #fff;
+  }

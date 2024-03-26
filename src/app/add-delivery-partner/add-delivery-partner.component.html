@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Add Delivery Partner</h2>
+
+<mat-dialog-content>
+    <div class="container" [formGroup]="form">
+        <p class="form-field">
+            <mat-form-field class="mat-form-field" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" [formControlName]="'name'">
+                <mat-error *ngIf="this.form.get('name')?.hasError('required')">DeliveryPartner Name is
+                    required</mat-error>
+            </mat-form-field>
+        </p>
+
+        <p class="form-field">
+            <mat-form-field class="mat-form-field" appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Name" [formControlName]="'username'">
+                <mat-error *ngIf="this.form.get('username')?.hasError('required')">username is required</mat-error>
+            </mat-form-field>
+        </p>
+
+        <p class="form-field">
+            <mat-form-field class="mat-form-field">
+                <mat-label>Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" [formControlName]="'password'">
+                    <mat-icon (click)="hide = !hide" matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngIf="this.form.get('password')?.hasError('required')">Password is required</mat-error>
+            </mat-form-field>
+        </p>
+
+        <div class="btn-add mrgT-10">
+            <button mat-raised-button color="primary" (click)="onAddNew()">Add</button>
+        </div>
+    </div>
+</mat-dialog-content>

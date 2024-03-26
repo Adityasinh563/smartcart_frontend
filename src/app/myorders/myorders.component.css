@@ -1,0 +1,72 @@
+.mat-card{
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/* .products{
+    display: flex;
+    justify-content: space-between;
+} */
+
+.price-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.bill-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.order-detail{
+    margin-left: auto;
+}
+
+.label{
+    flex: 1;
+}
+
+.my-orders{
+    font-size:x-large;
+    /* font-weight: bold; */
+}
+
+.details {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.quantity{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.order-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-weight: bold;
+  }
+  
+  .order-status.placed {
+    background-color: #f0ad4e; /* Orange color for "Placed" status */
+    color: #fff; /* White text for better contrast */
+  }
+  
+  .order-status.dispatched {
+    background-color: #5bc0de; /* Blue color for "Dispatched" status */
+    color: #fff;
+  }
+  
+  .order-status.delivered {
+    background-color: #5cb85c; /* Green color for "Delivered" status */
+    color: #fff;
+  }

@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>Assign Delivery Partner</h2>
+
+<mat-dialog-content>
+    <h3> Order Id: {{ orderId.orderId }} </h3>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Assignee</mat-label>
+        <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="optionSelected($event)">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+    <div>
+
+        <h3>Customer Details</h3>
+        <p> {{ data?.customer?.username }} </p>
+        <p> {{ data?.customer.address?.street1 }} </p>
+        <p> {{ data?.customer.address?.street2 }} </p>
+        <p> {{ data?.customer.address?.street3 }} </p>
+
+    </div>
+
+    <div>
+         Payment Method: {{ data?.payMethod }}
+         <h4>Order Status: <span class="order-status" [ngClass]="{'placed': data?.status === 'placed', 'dispatched': data?.status === 'dispatched', 'delivered': data?.status === 'delivered'}"> {{ data?.status }} </span></h4>
+    </div>
+
+        <h3>Product Details</h3>
+        <div class="product-detail" *ngFor="let product of data?.products">
+            <img class="product-image" style="width:200px; height: 200px;" src="{{ product.product.productImage }}"> 
+            <div class="product-description">    
+                <p> {{ product.product.name }} </p>
+                <p> Category: {{ product.product.category }} </p>
+                <p> Qty : {{ product.qty }} </p>
+                <p> {{ product.product.price | currency:'INR' }} </p>
+            </div>
+
+        </div>
+
+        <div class="bill-details">
+            <div class="row">
+                <div class="label">
+                    Sub Total 
+                </div>
+                <div class="">
+                    {{ data?.totalPrice - 20 | currency:'INR' }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="label">
+                    Delivery Charge
+                </div>
+                <div class="">
+                    {{ 20 | currency:'INR' }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="label">
+                    <h2>Total</h2>
+                </div>
+                <div class="">
+                    <h2>{{ data?.totalPrice | currency:'INR' }}</h2>
+                </div>
+            </div>
+        </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onSave()"> Save </button>
+</mat-dialog-actions>

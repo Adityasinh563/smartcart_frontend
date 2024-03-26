@@ -1,0 +1,67 @@
+<div class="container" [formGroup]="form">
+    <mat-card class="mat-card">
+        <mat-card-header class="mat-card-header">
+            <mat-card-title>My Account Detail</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Username" [formControlName]="'username'">
+                    <mat-error *ngIf="this.form.get('username')?.hasError('required')"> Username is required</mat-error>
+                </mat-form-field>
+            </p>
+
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>Address Line 1</mat-label>
+                    <input matInput placeholder="Address Line 1" [formControlName]="'address1'">
+                    <mat-error *ngIf="this.form.get('address1')?.hasError('required')"> Address Line1  is required</mat-error>
+                </mat-form-field>
+            </p>
+
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>Address Line 2</mat-label>
+                    <input matInput placeholder="Address Line 2" [formControlName]="'address2'">
+                </mat-form-field>
+            </p>
+
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>Address Line 3</mat-label>
+                    <input matInput placeholder="Address Line 3" [formControlName]="'address3'">
+                </mat-form-field>
+            </p>
+            
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>City</mat-label>
+                    <input matInput placeholder="city" [formControlName]="'city'">
+                    <mat-error *ngIf="this.form.get('city')?.hasError('required')"> City is required</mat-error>
+                </mat-form-field>
+            </p>
+
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>State</mat-label>
+                    <input matInput placeholder="state" [formControlName]="'state'">
+                    <mat-error *ngIf="this.form.get('state')?.hasError('required')"> State  is required</mat-error>
+                </mat-form-field>
+            </p>
+
+            <p class="form-field">
+                <mat-form-field class="mat-form-field" appearance="outline">
+                    <mat-label>Zip</mat-label>
+                    <input matInput placeholder="zip" [formControlName]="'zip'">
+                    <mat-error *ngIf="this.form.get('zip')?.hasError('required')"> Zip  is required</mat-error>
+                </mat-form-field>
+            </p>
+
+            <div class="btn-add mrgT-10">
+                <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+</div>
